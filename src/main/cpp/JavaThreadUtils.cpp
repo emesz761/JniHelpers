@@ -63,7 +63,7 @@ JNIEnv* JavaThreadUtils::attachCurrentThreadToJVM(const char* thread_name) {
   args.name = const_cast<char*>(thread_name);
   args.group = NULL;
 
-#ifdef ANDROID
+#ifdef __ANDROID__
   result = sJavaVm->AttachCurrentThread(&env, &args);
 #else
   result = sJavaVm->AttachCurrentThread((void**)(&env), &args);
@@ -85,7 +85,7 @@ JNIEnv* JavaThreadUtils::attachCurrentThreadAsDaemonToJVM(const char* thread_nam
   args.name = const_cast<char*>(thread_name);
   args.group = NULL;
 
-#ifdef ANDROID
+#ifdef __ANDROID__
   result = sJavaVm->AttachCurrentThreadAsDaemon(&env, &args);
 #else
   result = sJavaVm->AttachCurrentThreadAsDaemon((void**)(&env), &args);
